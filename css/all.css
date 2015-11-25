@@ -1,0 +1,804 @@
+html {
+    height: 100%
+}
+body {
+    height: 100%;
+    background-color: #080b22;
+    font-family: 'PTSansNarrowRegular', Helvetica, serif; /*34/12*/
+    font-size: 62.5%;
+    transition: background-color ease 1s;
+}
+.wrapper:after,
+aside:after,
+.clearfix:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+.wrapper {
+    overflow: hidden;
+    position: relative;
+    min-height: 100%;
+
+}
+a {
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: none;
+}
+aside {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    background-color: #081322;
+    transition: right ease 1s;
+    color: #fff;
+    z-index: 9;
+    width: 33.1%;
+    right: -33.1%;
+}
+aside.active {
+    right: 0;
+}
+.menu-button {
+    font: 37px/39px "sunny4", 'PTSansNarrowRegular', Helvetica, serif;
+    position: absolute;
+    top: 21px;
+    left: -57px;
+    z-index: 10;
+    right: 86%;
+    cursor: pointer;
+    transition: left ease 1s;
+}
+aside.active .menu-button {
+    left: 38px;
+}
+.wrapper-aside {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 20px 0 0 40px;
+    box-sizing: border-box;
+}
+.control {
+    font-size: 3.6em;
+    margin: 0 30px 21px 0;
+}
+.control .active,
+.control .icon:hover {
+    color: #ff4200;
+}
+#delete-city,
+#add-city,
+#confirm-delete {
+    float: right;
+    cursor: pointer;
+    margin-left: 15px;
+}
+.holder-input {
+    background-color: #c1c4c8;
+    padding: 3px 30px;
+    border: none;
+    border-radius: 17px;
+    -moz-border-radius: 17px;
+    -webkit-border-radius: 17px;
+    height: 34px;
+    line-height: 30px;
+    margin: 0 100px 0 12%;
+}
+.control input[type="text"] {
+    width: 100%;
+    height: 100%;
+    font-size: 0.7em;
+    font-family: 'PTSansNarrowRegular', Helvetica, serif;
+    border: none;
+    background-color: #c1c4c8;
+    box-sizing: border-box;
+    outline: none;
+    color: #ff4200;
+    text-shadow: 0 0 0 #000;
+    -moz-box-shadow: 0 0 0 #000;
+    -webkit-box-shadow: 0 0 0 #000;
+    -webkit-text-fill-color: transparent;
+}
+input::-webkit-input-placeholder {
+    text-shadow: none;
+    -webkit-text-fill-color: initial;
+}
+.cities-holder {
+    overflow: auto;
+    height: calc(100% - 379px);
+}
+ul.cities {
+    border-top: 3px solid #464e59;
+}
+.cities li {
+    border-bottom: 3px solid #464e59;
+    width: 100%;
+    padding: 10px 0 7px;
+    cursor: pointer;
+}
+.cities li:after {
+    content: '';
+    clear: both;
+    display: block;
+}
+.cities .icon {
+    color: #a5a7a9;
+}
+.temprature {
+    position: relative;
+    font-size: 6em;
+    line-height: 6em;
+}
+.temprature.celsius:after {
+    content: '\00B0';
+}
+.cities .temprature {
+    float: left;
+    font-size: 4.5em;
+    line-height: 1em;
+    margin-right: 2%;
+}
+.cities .icon {
+    float: left;
+    font-size: 5em;
+    margin-right: 2%;
+}
+.forecast {
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, .5);
+    font-size: 1.5em;
+    line-height: 20px;
+}
+.forecast:before {
+    content: '// ';
+}
+.city {
+    overflow: hidden;
+}
+.city-name {
+    margin-bottom: 4px;
+    font-size: 2.3em;
+}
+.cities input[type="checkbox"] {
+    display: none;
+}
+.cities label {
+    width: 30px;
+    height: 30px;
+    background-color: #222;
+    display: block;
+    float: right;
+    margin: 7px 15px 0 5px;
+}
+.cities input[type="checkbox"]:checked + .icon.check-icon {
+    font-size: 3.4em;
+    color: #ff4200;
+    display: block;
+}
+.cities input[type="checkbox"] + .icon.check-icon {
+    display: none;
+}
+.settings {
+    background-color: #152132;
+    height: 380px;
+    position: absolute;
+    bottom: -81px;
+    left: 0;
+    right: 0;
+    padding-left: 46px;
+    padding-top: 10px;
+}
+.separator {
+    width: 100%;
+    height: 3px;
+    background-color: rgba(255, 255, 255, .25);
+    float: left;
+}
+.settings-icon {
+    float: right;
+}
+.switch-temprature {
+    float: left;
+    font-size: 4em;
+    width: 100%;
+    margin-bottom: 10px;
+}
+.output {
+    float: right;
+    font-size: 22px;
+    font-weight: bold;
+}
+.output-days:after {
+    content: ' days';
+}
+.output-time:after {
+    content: ' min';
+}
+.deg {
+    color: rgba(255, 255, 255, .25);
+    cursor: pointer;
+}
+.deg.active {
+    color: #fff;
+    cursor: inherit;
+}
+.deg:before {
+    content: '\00B0';
+}
+.slider-holder {
+    color: #6e7279;
+    padding: 30px;
+    clear: both;
+}
+.switch-temprature .separator {
+    width: 2px;
+    height: 36px;
+    color: rgba(255, 255, 255, .25);
+    margin: 0 55px;
+    display: inline-block;
+    vertical-align: middle;
+    float: initial;
+}
+.switch-temprature .icon {
+    float: right;
+    margin-right: 5%;
+}
+.time {
+    color: #fff;
+    float: right;
+}
+.slider {
+    width: 100%;
+    margin: 20px 0;
+}
+main {
+    width: 66%;
+    padding: 0.2% 1% 30px;
+    color: #fff;
+    position: relative;
+}
+.rain-snow-wrapper {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+.rain-snow {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+}
+
+.rain-snow:before, .rain-snow:after {
+    content: "";
+    position: absolute;
+    left: -50%;
+    top: -50%;
+    right: -50%;
+    bottom: -50%;
+    z-index: 1;
+    pointer-events: none;
+    background: transparent repeat;
+    opacity: 0.7;
+    -webkit-animation-name: weather;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+    animation-name: weather;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+.rain-snow:after {
+    opacity: 0.8;
+    -webkit-animation-name: weather2;
+    animation-name: weather2;
+}
+.rain-snow.rain:before, .rain-snow.rain:after {
+    background-image: url(../images/rain.png);
+    -webkit-animation-duration: 6s;
+    animation-duration: 6s;
+}
+.rain-snow.rain:after {
+    -webkit-animation-duration: 7s;
+    animation-duration: 7s;
+}
+.rain-snow.snow:before, .rain-snow.snow:after {
+    background-image: url(../images/snow.png);
+    -webkit-animation-duration: 9s;
+    animation-duration: 9s;
+}
+.rain-snow.snow:after {
+    -webkit-animation-duration: 7s;
+    animation-duration: 7s;
+}
+@-webkit-keyframes weather {
+    from {
+        background-position: 0 0px;
+    }
+    to {
+        background-position: 0 1024px;
+    }
+}
+@keyframes weather {
+    from {
+        background-position: 0 0px;
+    }
+    to {
+        background-position: 0 1024px;
+    }
+}
+@-webkit-keyframes weather2 {
+    from {
+        background-position: 64px 64px;
+    }
+    to {
+        background-position: 64px 1088px;
+    }
+}
+@keyframes weather2 {
+    from {
+        background-position: 64px 64px;
+    }
+    to {
+        background-position: 64px 1088px;
+    }
+}
+.gallery {
+    position: relative;
+}
+.jcarousel {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+}
+.jcarousel .slides {
+    width: 2000em;
+    position: relative;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.jcarousel li.slide {
+    float: left;
+    box-sizing: border-box;
+    margin-right: 20px;
+}
+.jcarousel-pagination {
+    z-index: 20;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+}
+.jcarousel-pagination a {
+    display: inline-block;
+    cursor: pointer;
+    color: #fff;
+    margin-left: 14px;
+    font-size: 30px;
+}
+.city-forecast {
+    text-transform: uppercase;
+    float: left;
+    width: 48.3%;
+}
+.last-time-refresh {
+    line-height: 1.5em;
+    font-size: 3em;
+    vertical-align: top;
+}
+.refresh-icon {
+    font-size: 4.9em;
+    cursor: pointer;
+}
+.city-forecast .city-name {
+    font-size: 6.5em;
+    width: 100%;
+    word-wrap: break-word;
+    line-height: 0.8em;
+}
+.date {
+    font-size: 3em;
+    letter-spacing: 8px;
+    color: rgba(255, 255, 255, .55);
+    margin-bottom: 5%;
+}
+.current-temprature {
+    width: 100%;
+    padding-bottom: 3%;
+}
+.current-temprature .icon {
+    font-size: 12em;
+    display: inline-block;
+    width: 25%;
+    box-sizing: border-box;
+}
+.holder-temprat {
+    width: 25%;
+    display: inline-block;
+}
+.current-temprature .temprature {
+    font-size: 10.1em;
+    padding-left: 11%;
+    line-height: 1em;
+    padding-top: 13%;
+}
+.current-temprature .forecast {
+    padding-left: 17%;
+    width: auto;
+    margin-right: -100px;
+}
+.moon {
+    display: inline-block;
+    width: 25%;
+    margin-left: 25%;
+    text-align: center;
+}
+.moon .icon {
+    margin-bottom: 8px;
+    font-size: 8.7em;
+    line-height: 0.85em;
+    margin-left: -61px;
+}
+.moon-time {
+    font-size: 3.1em;
+    line-height: 0.6em;
+}
+.temprature-for-hour {
+    margin-bottom: 9.5%;
+}
+.temprature-for-hour ul::-webkit-scrollbar-track,
+.temprature-for-hour ul::-webkit-scrollbar {
+    background-color: rgba(255, 255, 255, .1);
+    height: 10px;
+}
+.temprature-for-hour ul::-webkit-scrollbar-thumb {
+    background-color: #fff;
+    width: 110px;
+}
+.temprature-for-hour ul {
+    padding: 28px 0;
+    width: 100%;
+    float: left;
+    height: 169px;
+    overflow: auto;
+    white-space: nowrap;
+}
+.temprature-for-hour li {
+    width: 25%;
+    display: inline-block;
+}
+.temprature-for-hour li:last-of-type {
+    margin-right: 0
+}
+.time {
+    font-size: 2em;
+    line-height: 31px;
+    text-align: center;
+    width: 100%;
+}
+.temprature-for-hour .icon {
+    font-size: 6.9em;
+    line-height: 72px;
+    text-align: center;
+    margin-top: 25px;
+    width: 100%;
+    display: inline-block;
+}
+.temprature-for-hour .temprature {
+    font-size: 4.1em;
+    line-height: 19px;
+    text-align: center;
+}
+.sun-activity ul {
+    display: flex;
+    justify-content: space-around;
+}
+.sun-activity .icon {
+    font-size: 6.9em;
+    margin-bottom: 6px;
+}
+.sun-activity .mesure,
+.sun-activity .time {
+    font-size: 3.9em;
+    text-align: center;
+    margin-left: 0;
+    line-height: 40px;
+}
+.sun-activity .mesure {
+    text-align: center;
+}
+.sun-activity .humidity .mesure:after {
+    content: '%';
+}
+.sun-activity .mesure:after {
+    content: '';
+}
+.wind .mesure:after {
+    content: 'm/c';
+    font-size: 0.5em;
+    line-height: 24px;
+    position: absolute;
+    top: -4px;
+    text-transform: none;
+}
+.wind .mesure {
+    float: left;
+    position: relative;
+    margin-top: -7px;
+    width: 100%;
+    text-align: center;
+}
+.wind .icon {
+    font-size: 8.4em;
+    margin-left: 7px;
+    margin-top: -9px;
+    position: relative;
+}
+.wind-direction-name {
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    margin-left: -13px;
+    line-height: 0.8em;
+    text-align: center;
+    font-size: 0.2em;
+    font-family: 'PTSansNarrowRegular', Helvetica, serif;
+}
+.day-temprature {
+    float: right;
+    width: 48.3%;
+    margin-top: 12px;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+.day-temprature ul {
+    padding: 0 5.8%;
+    overflow: hidden;
+    margin-bottom: -3px;
+}
+.day-temprature li {
+    width: 100%;
+    padding: 5% 0;
+    border-style: solid;
+    border-width: 3px 0 0;
+    border-color: rgba(255, 255, 255, .25);
+}
+.day-temprature li:first-of-type {
+    border: none
+}
+.today-holder {
+    float: left;
+}
+.day-temprature span {
+    text-transform: uppercase;
+    width: 50%;
+    display: inline-block;
+    vertical-align: top;
+    font-size: 3em;
+}
+.day-temprature .date-name {
+    padding-top: 12px;
+    width: 73px;
+}
+.day-temprature .icon {
+    font-size: 5em;
+    width: 55px;
+    text-transform: initial;
+}
+.day-temprature .range-holder {
+    overflow: hidden;
+}
+.day-temprature .range-holder .temprature {
+    font-size: 3em;
+    line-height: 54px;
+    width: auto;
+    display: inline-block;
+}
+.day-temprature .range {
+    height: 28px;
+    margin: 10px 6px 0 0;
+    background-color: #fff;
+    border-radius: 13px;
+    -moz-border-radius: 13px;
+    -webkit-border-radius: 13px;
+    display: inline-block;
+}
+.descr {
+    font-size: 25px;
+    text-transform: uppercase;
+}
+.display-none,
+label.display-none {
+    display: none;
+}
+@media (max-width: 1550px) {
+    .date {
+        width: 60%;
+    }
+}
+@media (max-width: 1200px) {
+    body {
+        font-size: 60%;
+    }
+    .date {
+        letter-spacing: 5px;
+    }
+    .current-temprature .icon {
+        font-size: 12em;
+    }
+    .current-temprature .temprature {
+        font-size: 7em;
+    }
+    .current-temprature .forecast {
+        padding-left: 0;
+    }
+    .cities .icon {
+        font-size: 5em;
+    }
+    .cities .temprature {
+        font-size: 4.5em;
+    }
+    .city-name {
+        font-size: 2em;
+    }
+    .descr,
+    .slider-amount {
+        font-size: 18px;
+    }
+    .sun-activity .mesure, .sun-activity .time {
+        font-size: 3em;
+    }
+}
+@media (max-width: 1024px) {
+    body {
+        font-size: 50%;
+    }
+    .gallery {
+        width: 100%
+    }
+    main {
+        width: 100%;
+    }
+    aside {
+        width: 49%;
+        right: -49%
+    }
+    aside.active {
+        right: 0;
+    }
+    .current-temprature .icon {
+        font-size: 11em;
+    }
+    .wind .icon::after {
+        line-height: 0.5em;
+    }
+    .sun-activity .mesure,
+    .sun-activity .time,
+    .day-temprature span,
+    .day-temprature .range-holder .temprature {
+        font-size: 4em;
+    }
+    .current-temprature .icon {
+        font-size: 14em;
+    }
+    .current-temprature .temprature {
+        font-size: 11em;
+    }
+    .temprature-for-hour .icon {
+        font-size: 7.9em;
+    }
+    .time {
+        font-size: 3em;
+    }
+}
+@media (max-width: 940px) {
+    .day-temprature span {
+        width: 46%;
+    }
+}
+@media (max-width: 900px) {
+    body {
+        font-size: 48%;
+    }
+    .day-temprature span {
+        font-size: 3em;
+    }
+}
+@media screen and (max-width: 768px) {
+    body {
+        font-size: 48%;
+    }
+    .day-temprature .date-name {
+        width: 61px;
+    }
+}
+@media screen and (max-width: 720px) {
+    body {
+        font-size: 48%;
+    }
+}
+@media screen and (max-width: 610px) {
+    .day-temprature .icon {
+        width: 49px;
+    }
+    .day-temprature span {
+        font-size: 2.5em;
+    }
+    .day-temprature .range {
+        height: 20px;
+        margin-top: 15px;
+        width: 45%;
+    }
+    .sun-activity .mesure,
+    .sun-activity .time,
+    .day-temprature span,
+    .day-temprature .range-holder .temprature {
+        font-size: 3em;
+    }
+    .current-temprature .icon {
+        font-size: 12em;
+    }
+    .current-temprature .temprature {
+        font-size: 9em;
+        padding-left: 19px;
+    }
+    .day-temprature span {
+        width: 51%;
+    }
+}
+@media screen and (max-width: 480px) {
+    body {
+        font-size: 70%;
+    }
+    .city-forecast {
+        width: 100%
+    }
+    .day-temprature {
+        width: 100%
+    }
+    aside {
+        width: 100%;
+        right: -100%;
+    }
+    .wrapper-aside:hover:before {
+        right: 80%;
+    }
+    .wind .icon::after {
+        line-height: 1.1em;
+    }
+    .day-temprature .icon {
+        width: 62px;
+    }
+    .current-temprature .icon {
+        font-size: 10em;
+    }
+    .moon .icon {
+        font-size: 8em;
+    }
+    .day-temprature .range {
+        width: 40%;
+    }
+    .sun-activity .mesure,
+    .sun-activity .time,
+    .day-temprature span,
+    .day-temprature .range-holder .temprature {
+        font-size: 2.5em;
+    }
+    .temprature-for-hour .icon {
+        font-size: 6em;
+        margin-bottom: 12px;
+    }
+}
+@media screen and (max-width: 320px) {
+    body {
+        font-size: 120%;
+    }
+    .current-temprature .icon {
+        font-size: 9em;
+    }
+}

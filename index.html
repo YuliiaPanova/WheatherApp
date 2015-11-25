@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/reset.css"/>
+    <link rel="stylesheet" href="css/all.css"/>
+    <link rel="stylesheet" href="css/rangeslider.css"/>
+    <link rel="stylesheet" href="fonts/ptsans-style.css"/>
+    <link rel="stylesheet" href="fonts/icons-style.css"/>
+    <title>Weather App</title>
+    <link rel="shortcut icon" href="images/favicon.png">
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&language=en"></script>
+	<script data-main="js/controller.js"  src="js/require.js"></script>
+</head>
+<body>
+<div class="wrapper">
+    <div class="rain-snow-wrapper"><div class="rain-snow"></div></div>
+    <aside class="active" id="aside-block">
+        <div class="wrapper-aside">
+            <div class="icon menu-button menu-icon"></div>
+            <div class="control clearfix">
+                <div id="delete-city"><div class="icon delete-icon"></div></div>
+                <div id="add-city"><div class="icon add-icon"></div></div>
+                <div id="confirm-delete" class="display-none"><div class="icon check-icon"></div></div>
+                <div class="holder-input display-none" id="search" ><input type="text" id="searchCity"/></div>
+            </div>
+            <div class="cities-holder">
+                <ul class="cities" id="citiesList">
+
+
+                    <script type="text/template" id='template-list-of-cities'>
+                        <li>
+                            <div class="icon {{= obj.currently.icon}}-icon"></div>
+                            <div class="temprature fahrenheit">{{= Math.round(obj.currently.temperature)}}</div>
+                            <label class="display-none"><input type="checkbox"/><div class="icon check-icon"></div></label>
+                            <div class="city">
+                                <div class="city-name">{{= obj.longname}}</div>
+                                <div class="forecast">{{=obj.currently.summary}}</div>
+                            </div>
+                        </li>
+                    </script>
+
+                </ul>
+            </div>
+            <div class="settings">
+                <div class="switch-temprature clearfix">
+                    <span id="celsius" class="deg celsius">C</span>
+                    <span class="separator"></span>
+                    <span id="faring" class="deg active faring">F</span>
+                    <div class="icon settings-icon"></div>
+                </div>
+                <div class="separator"></div>
+                <div class="slider-holder range-holder">
+                    <span class="descr">SHOW WEATHER FOR</span>
+                    <output class="output output-days"></output>
+                    <input type="range" min="1" max="8" value="1" data-rangeslider id="range-days">
+                </div>
+                <div class="separator"></div>
+                <div class="slider-holder range-holder">
+                    <span class="descr">Update WEATHER every</span>
+                    <output class="output output-time"></output>
+                    <input type="range" min="5" max="60" step="5" value="5" data-rangeslider id="range-time">
+                </div>
+            </div>
+        </div>
+    </aside>
+    <main>
+
+        <div class="jcarousel-pagination">
+            <!-- Pagination items will be generated in here -->
+        </div>
+        <div class="gallery jcarousel clearfix">
+            <ul class="slides clearfix" id="slides-list">
+            </ul>
+        </div>
+    </main>
+</div>
+</body>
+
+<script type="text/template" id='template-for-city'>
+    <li class="clearfix slide">
+        <div class="city-forecast">
+            <span class="last-time-refresh">{{= obj.refresh}}</span>
+            <span class="icon refresh-icon"></span>
+            <input type="hidden" value="{{= obj.longname}}" class="longname">
+            <h2 class="city-name">{{= obj.name}}</h2>
+            <div class="date">
+                {{= ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][new Date().getDay()]}},
+                {{= ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"][new Date().getMonth()]}},
+                {{= new Date().getDate()}}
+            </div>
+            <div class="current-temprature clearfix">
+                <div class="icon {{= obj.currently.icon}}-icon">
+                </div><div class="holder-temprat clearfix">
+                <div class="temprature fahrenheit">{{= Math.round(obj.currently.temperature)}}</div>
+                <div class="forecast">{{= obj.currently.summary}}</div>
+            </div><div class="moon">
+                <div class="icon young-moon-icon"></div>
+                <div class="moon-time">{{=obj.daily.data[0].moonPhase}}</div>
+            </div>
+            </div>
+            <div class="separator"></div>
+            <div class="temprature-for-hour clearfix">
+                <ul class="clearfix">
+                    {{ var i = 0}}
+                    {{ _.each(obj.hourly.data,function(item){ if(i == 24) return}}
+                    <li>
+                        <div class="time">{{=  new Date(item.time*1000).getHours() }}:00</div>
+                        <div  class="icon {{= item.icon }}-icon"></div>
+                        <div class="temprature fahrenheit"> {{= Math.round(item.temperature) }}</div>
+                    </li>
+                    {{ i++ }) }}
+                </ul>
+            </div>
+            <div class="sun-activity">
+                <ul>
+                    <li class="humidity">
+                        <div class="icon humidity-icon "></div>
+                        <div class="mesure">{{= Math.round(obj.currently.humidity*100)}}</div>
+                    </li>
+                    <li class="wind">
+                        <div class="icon wind-direction-icon ">
+                            <div class="wind-direction-name">{{= obj.windDirection}}</div>
+                        </div>
+                        <div class="mesure">{{= obj.currently.windSpeed}}</div>
+                    </li>
+                    <li class="sun up">
+                        <div class="icon sunrise-icon"></div>
+                        <div class="mesure">{{= new Date(obj.daily.data[0].sunriseTime*1000).getHours()}}:{{= (new Date(obj.daily.data[0].sunriseTime*1000).getMinutes() > 9) ?  new Date(obj.daily.data[0].sunriseTime*1000).getMinutes() :'0'+new Date(obj.daily.data[0].sunriseTime*1000).getMinutes() }}</div>
+                    </li>
+                    <li class="sun down">
+                        <div class="icon sunset-icon"></div>
+                        <div class="mesure">{{= new Date(obj.daily.data[0].sunsetTime*1000).getHours()}}:{{= (new Date(obj.daily.data[0].sunsetTime*1000).getMinutes() > 9) ?  new Date(obj.daily.data[0].sunsetTime*1000).getMinutes() :'0'+new Date(obj.daily.data[0].sunsetTime*1000).getMinutes() }}</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="day-temprature">
+            <ul>
+                {{ var ArrayDays = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']}}
+                {{ _.each(obj.daily.data,function(item,key){ }}
+                <li>
+                    <div class="today-holder">
+                        <span class="date-name">{{ if (key) { }}{{= ArrayDays[new Date(item.time * 1000).getDay()] }}  {{  }else{  }}   {{='Today'}}    {{ } }}</span>
+                        <span class="icon {{= item.icon}}-icon"></span>
+                    </div>
+                        <div class="range-holder">
+                        <span class="temprature fahrenheit">{{= Math.round(item.temperatureMin)}}</span>
+                        <span class="range"></span>
+                        <span class="temprature fahrenheit">{{= Math.round(item.temperatureMax)}}</span>
+                    </div>
+                </li>
+                {{ }) }}
+
+            </ul>
+        </div>
+    </li>
+</script>
+
+</html>

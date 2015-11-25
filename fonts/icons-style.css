@@ -1,0 +1,165 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: "sunny4";
+  src:url("sunny4.eot");
+  src:url("sunny4.eot?#iefix") format("embedded-opentype"),
+    url("sunny4.woff") format("woff"),
+    url("sunny4.ttf") format("truetype"),
+    url("sunny4.svg#sunny4") format("svg");
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+/*[data-icon]:before {*/
+  /*font-family: "sunny4" !important;*/
+  /*content: attr(data-icon);*/
+  /*font-style: normal !important;*/
+  /*font-weight: normal !important;*/
+  /*font-variant: normal !important;*/
+  /*text-transform: none !important;*/
+  /*speak: none;*/
+  /*line-height: 1;*/
+  /*-webkit-font-smoothing: antialiased;*/
+  /*-moz-osx-font-smoothing: grayscale;*/
+/*}*/
+.icon{
+  font-family: "sunny4";
+  text-transform: initial;
+}
+
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+  font-family: "sunny4" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.add-icon:before {
+  content: "a";
+}
+.almost-full-icon:before {
+  content: "b";
+}
+.almost-old-icon:before {
+  content: "c";
+}
+.cloudy-icon:before {
+  content: "d";
+}
+.cloudy-day-icon:before {
+  content: "e";
+}
+.delete-icon:before {
+  content: "f";
+}
+.dust-icon:before {
+  content: "g";
+}
+.empty-moon-icon:before {
+  content: "h";
+}
+.fog-icon:before {
+  content: "i";
+}
+.full-moon-icon:before {
+  content: "j";
+}
+.grow-moon-icon:before {
+  content: "k";
+}
+.heavy-rain-icon:before {
+  content: "l";
+}
+.heavy-snow-icon:before {
+  content: "m";
+
+}
+.humidity-icon:before {
+  content: "n";
+}
+.menu-icon:before {
+  content: "o";
+}
+.night-icon:before,
+.clear-night-icon:before{
+  content: "q";
+}
+.night-cloudy-icon:before,
+.partly-cloudy-night-icon:before{
+  content: "r";
+}
+.night-less-cloudy-icon:before {
+  content: "s";
+}
+.old-moon-icon:before {
+  content: "t";
+}
+.partly-cloudy-day-icon:before {
+   content: "u";
+ }
+.rain-icon:before {
+  content: "v";
+}
+.rain-snow-icon:before {
+  content: "w";
+}
+.settings-icon:before {
+  content: "x";
+}
+.shower-icon:before {
+  content: "y";
+}
+.sleet-icon:before {
+  content: "z";
+}
+.sleet-rain-icon:before {
+  content: "A";
+}
+.snow-icon:before {
+  content: "B";
+}
+.sunny-icon:before,
+.clear-day-icon:before{
+  content: "C";
+}
+.sunrise-icon:before {
+  content: "D";
+}
+.sunset-icon:before {
+  content: "E";
+}
+.thundershowers-sunny-icon:before {
+  content: "F";
+}
+.thunderstorm-icon:before {
+  content: "G";
+}
+.wind-icon:before {
+  content: "H";
+}
+.wind-direction-icon:before {
+  content: "I";
+}
+.young-moon-icon:before {
+  content: "J";
+}
+.active-window-icon:before {
+  content: "K";
+}
+.next-window-icon:before {
+  content: "p";
+}
+.refresh-icon:before {
+  content: "L";
+}
+.check-icon:before {
+  content: "M";
+}
